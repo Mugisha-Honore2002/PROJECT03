@@ -1,0 +1,78 @@
+
+// In-memory data store
+let students = [
+  { id: 'STU001', name: 'Alice Uwera', course: 'Mathematics', marks: 92, grade: 'A' },
+  { id: 'STU002', name: 'Bob Nkurunziza', course: 'Physics', marks: 78, grade: 'B' },
+  { id: 'STU003', name: 'Clara Mukamana', course: 'Chemistry', marks: 85, grade: 'A' },
+  { id: 'STU004', name: 'David Habimana', course: 'Biology', marks: 61, grade: 'C' },
+  { id: 'STU005', name: 'Eva Ingabire', course: 'Computer Science', marks: 95, grade: 'A' },
+];
+
+function calculateGrade(marks) {
+  if (marks >= 90) return 'A';
+  if (marks >= 80) return 'B';
+  if (marks >= 70) return 'C';
+  if (marks >= 60) return 'D';
+  return 'F';
+}
+
+// GET all students
+app.get('/api/students', (req, res) => {
+  res.json(students);
+});
+
+// GET single student
+app.get('/api/students/:id', (req, res) => {
+  const student = students.find(s => s.id === req.params.id);
+  if (!student) return res.status(404).json({ error: 'Student not found' });
+  res.json(student);
+});
+
+// POST create student
+app.post('/api/students', (req, res) => {
+  const { name, course, marks } = req.body;
+  if (!name || !course || marks === undefined) {
+    return res.status(400).json({ error: 'Name, course, and marks are required' });
+  }
+  const id = 'STU' + String(students.length + 1).padStart(3, '0');
+  const grade = calculateGrade(Number(marks));
+  const student = { id, name, course, marks: Number(marks), grade };
+  students.push(student);
+  res.status(201).json(student);
+});
+
+// PUT update student
+app.put('/api/students/:id', (req, res) => {
+  const index = students.findIndex(s => s.id === req.params.id);
+  if (index === -1) return res.status(404).json({ error: 'Student not found' });
+  const { name, course, marks } = req.body;
+  const grade = calculateGrade(Number(marks));
+  students[index] = { ...students[index], name, course, marks: Number(marks), grade };
+  res.json(students[index]);
+});
+
+// DELETE student
+app.delete('/api/students/:id', (req, res) => {
+  const index = students.findIndex(s => s.id === req.params.id);
+  if (index === -1) return res.status(404).json({ error: 'Student not found' });
+  students.splice(index, 1);
+  res.json({ message: 'Student deleted' });
+});
+
+// GET average marks
+app.get('/api/stats/average', (req, res) => {
+  if (students.length === 0) return res.json({ average: 0 });
+  const avg = students.reduce((sum, s) => sum + s.marks, 0) / students.length;
+  res.json({ average: parseFloat(avg.toFixed(2)), count: students.length });
+});
+
+// GET search
+app.get('/api/search', (req, res) => {
+  const q = (req.query.q || '').toLowerCase();
+  const results = students.filter(s =>
+    s.name.toLowerCase().includes(q) ||
+    s.id.toLowerCase().includes(q) ||
+    s.course.toLowerCase().includes(q)
+  );
+  res.json(results);
+});
