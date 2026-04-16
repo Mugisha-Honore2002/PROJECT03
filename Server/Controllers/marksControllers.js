@@ -1,7 +1,7 @@
 const db = require('../db');
 
-// ─── HELPER: recalculate total after any mark update ─────────
-// Formula: (quiz1 + quiz2 + group_work + ca + midsem + exam) / 5
+
+// --- CALCULATION OF MARKS -------------------------
 const recalcTotal = async (enrollment_id) => {
     await db.query(
         `UPDATE marks

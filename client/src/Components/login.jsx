@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import logo from "../Assets/education-school-logo-design-template_731136-92.avif";
+
  
 const roles = ["Student", "Teacher", "Supervisor"];
  
@@ -71,10 +73,7 @@ export default function LoginPage() {
           {/* Logo mark */}
           <div className="flex items-center gap-3 mb-10">
             <div className="flex items-center justify-center bg-indigo-600 rounded-lg w-9 h-9">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-              </svg>
+          <img src={logo} alt="Logo" />
             </div>
             <span className="text-sm font-semibold tracking-widest uppercase text-slate-500">
               Apex Digital
@@ -244,10 +243,7 @@ export default function LoginPage() {
  
           {/* Icon */}
           <div className="flex items-center justify-center w-16 h-16 mx-auto mb-8 border bg-white/10 backdrop-blur-sm border-white/20 rounded-2xl">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-            </svg>
+          <img src={logo} alt="Logo" className=" rounded rounded-md" />
           </div>
  
           <h2 className="mb-1 text-4xl font-bold tracking-tight">Apex Digital</h2>
