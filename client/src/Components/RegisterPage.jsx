@@ -69,7 +69,7 @@ export default function RegisterPage() {
           {/* Logo mark */}
           <div className="flex items-center gap-3 mb-10">
             <div className="flex items-center justify-center bg-indigo-600 rounded-lg w-9 h-9">
-          <img src={logo} alt="Logo" className=" rounded rounded-md" />
+          <img src={logo} alt="Logo" className="rounded rounded-md " />
             </div>
             <span className="text-sm font-semibold tracking-widest uppercase text-slate-500">
               Apex Digital
@@ -156,7 +156,7 @@ export default function RegisterPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@school.rw"
+                placeholder="me@school.rw"
                 required
                 className="w-full px-4 py-3 text-sm transition-all duration-200 bg-white border rounded-xl border-slate-200 text-slate-800 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
               />
@@ -293,7 +293,7 @@ export default function RegisterPage() {
 
           {/* Icon */}
           <div className="flex items-center justify-center w-16 h-16 mx-auto mb-8 border bg-white/10 backdrop-blur-sm border-white/20 rounded-2xl">
-          <img src={logo} alt="Logo" className=" rounded rounded-md" />
+          <img src={logo} alt="Logo" className="rounded rounded-md " />
           </div>
 
           <h2 className="mb-1 text-4xl font-bold tracking-tight">Apex Digital</h2>

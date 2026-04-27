@@ -7,8 +7,8 @@ import logo from "../Assets/education-school-logo-design-template_731136-92.avif
 const roles = ["Student", "Teacher", "Supervisor"];
  
 const API_ENDPOINTS = {
-  Student:    "/api/student/login",
-  Teacher:    "/api/teacher/login",
+  Student: "/api/student/login",
+  Teacher: "/api/teacher/login",
   Supervisor: "/api/supervisor/login",
 };
  
@@ -243,7 +243,7 @@ export default function LoginPage() {
  
           {/* Icon */}
           <div className="flex items-center justify-center w-16 h-16 mx-auto mb-8 border bg-white/10 backdrop-blur-sm border-white/20 rounded-2xl">
-          <img src={logo} alt="Logo" className=" rounded rounded-md" />
+          <img src={logo} alt="Logo" className="rounded rounded-md " />
           </div>
  
           <h2 className="mb-1 text-4xl font-bold tracking-tight">Apex Digital</h2>

@@ -12,14 +12,14 @@ const {
 const { verifyToken, isSupervisor } = require('../middleware/auth');
 
 // public routes
-router.post('/register',        registerSupervisor);
-router.post('/login',           loginSupervisor);
+router.post('/register', registerSupervisor);
+router.post('/login', loginSupervisor);
 
 // protected routes
-router.get('/',                 verifyToken, isSupervisor, getAllSupervisors);
-router.get('/:id',              verifyToken, isSupervisor, getSupervisorById);
-router.put('/:id',              verifyToken, isSupervisor, updateSupervisor);
-router.put('/:id/password',     verifyToken, isSupervisor, updateSupervisorPassword);
-router.delete('/:id',           verifyToken, isSupervisor, deleteSupervisor);
+router.get('/', verifyToken, isSupervisor, getAllSupervisors);
+router.get('/:id', verifyToken, isSupervisor, getSupervisorById);
+router.put('/:id', verifyToken, isSupervisor, updateSupervisor);
+router.put('/:id/password', verifyToken, isSupervisor, updateSupervisorPassword);
+router.delete('/:id', verifyToken, isSupervisor, deleteSupervisor);
 
 module.exports = router;

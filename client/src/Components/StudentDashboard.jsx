@@ -110,7 +110,7 @@ export default function StudentDashboard() {
 
   const graded   = enrollments.filter(e => e.total !== null);
   const avgScore = graded.length ? Math.round(graded.reduce((s, e) => s + e.total, 0) / graded.length) : null;
-  const passed   = graded.filter(e => e.total >= 50).length;
+  const passed   = graded.filter(e => e.total >= 10).length;
 
   // which groups is student already in
   const enrolledGroupIds = new Set(enrollments.map(e => e.group_id));
@@ -132,15 +132,15 @@ export default function StudentDashboard() {
           <span className="mt-1 text-xs bg-indigo-50 text-indigo-500 font-medium px-2 py-0.5 rounded-full">Student</span>
         </div>
         <nav className="flex flex-col flex-1 gap-1">
-          <NavItem label="Overview"        active={page==="overview"}  onClick={() => go("overview")}
+          <NavItem label="Overview" active={page==="overview"} onClick={() => go("overview")}
             icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>} />
-          <NavItem label="Browse & Enroll" active={page==="browse"}    onClick={() => go("browse")}
+          <NavItem label="Browse & Enroll" active={page==="browse"} onClick={() => go("browse")}
             icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>} />
-          <NavItem label="My Courses"      active={page==="courses"}   onClick={() => go("courses")}
+          <NavItem label="My Courses" active={page==="courses"} onClick={() => go("courses")}
             icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>} />
-          <NavItem label="Edit Profile"    active={page==="profile"}   onClick={() => go("profile")}
+          <NavItem label="Edit Profile" active={page==="profile"} onClick={() => go("profile")}
             icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>} />
-          <NavItem label="Change Password" active={page==="password"}  onClick={() => go("password")}
+          <NavItem label="Change Password" active={page==="password"} onClick={() => go("password")}
             icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>} />
         </nav>
         <button onClick={handleLogout} className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-red-400 hover:bg-red-50 hover:text-red-600 transition-all mt-2">
@@ -160,9 +160,9 @@ export default function StudentDashboard() {
             <p className="mb-8 text-sm text-slate-400">Your academic summary.</p>
             <div className="grid grid-cols-1 gap-4 mb-8 sm:grid-cols-3">
               {[
-                { label: "Enrolled Courses", value: enrollments.length,                        color: "text-indigo-600"  },
-                { label: "Average Score",    value: avgScore !== null ? `${avgScore}  /20` : "—",  color: "text-amber-500"  },
-                { label: "Courses Passed",   value: passed,                                     color: "text-emerald-600"},
+                { label: "Enrolled Courses", value: enrollments.length, color: "text-indigo-600" },
+                { label: "Average Score", value: avgScore !== null ? `${avgScore}  /20` : "—  /20", color: "text-amber-500" },
+                { label: "Courses Passed", value: passed, color: "text-emerald-600"},
               ].map(s => (
                 <div key={s.label} className="p-5 bg-white border rounded-2xl border-slate-100">
                   <p className="mb-2 text-xs font-semibold tracking-widest uppercase text-slate-400">{s.label}</p>
@@ -244,18 +244,18 @@ export default function StudentDashboard() {
                         <p className="text-xs text-slate-400 mt-0.5">{e.course_code} · Group {e.group_label}{e.teacher_name ? ` · ${e.teacher_name}` : ""}</p>
                       </div>
                       <div className="text-right">
-                        <p className={`text-2xl font-bold ${gradeColor(e.total)}`}>{e.total !== null ? `${e.total}%` : "—"}</p>
+                        <p className={`text-2xl font-bold ${gradeColor(e.total)}`}>{e.total !== null ? `${e.total} /20` : "— /20"}</p>
                         <p className="text-xs text-slate-400">Grade {gradeLetter(e.total)}</p>
                       </div>
                     </div>
                     <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
                       {[
-                        { label: "Quiz 1", value: e.quiz1,                 max: 10 },
-                        { label: "Quiz 2", value: e.quiz2,                 max: 10 },
-                        { label: "Group",  value: e.group_work,            max: 10 },
-                        { label: "CA",     value: e.continuous_assessment, max: 10 },
-                        { label: "Midsem", value: e.midsem,                max: 30 },
-                        { label: "Exam",   value: e.exam,                  max: 40 },
+                        { label: "Quiz 1", value: e.quiz1, max: 10 },
+                        { label: "Quiz 2", value: e.quiz2, max: 10 },
+                        { label: "Group", value: e.group_work, max: 10 },
+                        { label: "CA", value: e.continuous_assessment, max: 10 },
+                        { label: "Midsem", value: e.midsem, max: 30 },
+                        { label: "Exam",  value: e.exam, max: 40 },
                       ].map(m => (
                         <div key={m.label} className="p-3 text-center bg-slate-50 rounded-xl">
                           <p className="mb-1 text-xs text-slate-400">{m.label}</p>

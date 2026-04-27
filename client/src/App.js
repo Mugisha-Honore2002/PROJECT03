@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from "react-router-dom";
-import LoginPage          from "./Components/login";
-import RegisterPage       from "./Components/RegisterPage";
-import StudentDashboard   from "./Components/StudentDashboard";
-import TeacherDashboard   from "./Components/TeacherDashboard";
+import LoginPage from "./Components/login";
+import RegisterPage from "./Components/RegisterPage";
+import StudentDashboard from "./Components/StudentDashboard";
+import TeacherDashboard from "./Components/TeacherDashboard";
 import SupervisorDashboard from "./Components/SupervisorDashboard";
 
 // ── helpers ───────────────────────────────────────────────────
